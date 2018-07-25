@@ -14,7 +14,7 @@ namespace MaterialsCalculator.Api.Models.Paint
         public double Volume { get; set; }
 
         [Required]
-        public double Coverage { get; set; }
+        public double CoverageM2PerTin { get; set; }
 
         [Required]
         public double TinsRequired { get; set; }

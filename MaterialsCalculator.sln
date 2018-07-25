@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialsCalculator.Core", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialsCalculator.Core.Tests", "MaterialsCalculator.Services.Tests\MaterialsCalculator.Core.Tests.csproj", "{DEC4BE83-D017-433C-B843-C4350DC99D08}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialsCalculator.Interfaces", "MaterialsCalculator.Interfaces\MaterialsCalculator.Interfaces.csproj", "{7FA40FDB-8F15-4C89-B21B-A6641770A59F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{DEC4BE83-D017-433C-B843-C4350DC99D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEC4BE83-D017-433C-B843-C4350DC99D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEC4BE83-D017-433C-B843-C4350DC99D08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FA40FDB-8F15-4C89-B21B-A6641770A59F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FA40FDB-8F15-4C89-B21B-A6641770A59F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FA40FDB-8F15-4C89-B21B-A6641770A59F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FA40FDB-8F15-4C89-B21B-A6641770A59F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

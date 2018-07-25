@@ -11,6 +11,8 @@ using MaterialsCalculator.Api.Controllers;
 using FluentAssertions;
 using FluentAssertions.Extensions;
 using MaterialsCalculator.Api.Models.Paint;
+using MaterialsCalculator.Interfaces.Services;
+using Moq;
 
 namespace MaterialsCalculator.Api.Tests.Controllers
 {
@@ -19,11 +21,13 @@ namespace MaterialsCalculator.Api.Tests.Controllers
     {
         PaintController _paintController;
         PaintQuantityRequestModel _paintRequestModel;
+        IPaintService _mockPaintService;
 
         [TestInitialize]
         public void Setup()
         {
-            _paintController = new PaintController();
+            _mockPaintService = Mock.Of<IPaintService>();
+            _paintController = new PaintController(_mockPaintService);
             _paintRequestModel = new PaintQuantityRequestModel();
         }
 

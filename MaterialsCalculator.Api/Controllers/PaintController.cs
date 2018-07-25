@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Web.Http;
 using MaterialsCalculator.Api.Models;
 using MaterialsCalculator.Api.Models.Paint;
+using MaterialsCalculator.Interfaces.Services;
 
 namespace MaterialsCalculator.Api.Controllers
 {
     [RoutePrefix("api/Materials")]
     public class PaintController : ApiController
     {
+        private IPaintService _paintService;
+
+        public PaintController(IPaintService paintService)
+        {
+            _paintService = paintService;
+        }
+
         [HttpGet]
         [Route("Paint")]
         public IHttpActionResult Get()
@@ -40,7 +48,7 @@ namespace MaterialsCalculator.Api.Controllers
                         PaintInfo = paintInfo,
                         Area = 0.0,
                         Volume = 0.0,
-                        Coverage = 1.2,
+                        CoverageM2PerTin = 1.2,
                         TinsRequired = 1
                     };
 

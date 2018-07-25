@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MaterialsCalculator.Interfaces\MaterialsCalculator.Interfaces.csproj" />
+    <Folder Include="Providers\" />
   </ItemGroup>
 
 </Project>
