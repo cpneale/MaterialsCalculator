@@ -8,6 +8,6 @@ namespace MaterialsCalculator.Interfaces.Services
         IEnumerable<IPaintInfo> GetPaints();
 
         IPaintCoverageInfo CalculateCoverage(double roomHeight, double roomWidth,
-                                                double roomLength, double coverage);
+                                                double roomLength, int paintId);
     }
 }

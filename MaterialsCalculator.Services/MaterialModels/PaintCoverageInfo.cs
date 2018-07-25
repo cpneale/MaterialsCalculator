@@ -2,9 +2,11 @@
 
 namespace MaterialsCalculator.Core.MaterialModels
 {
-    internal class PaintCoverageInfo : IPaintCoverageInfo
+    public class PaintCoverageInfo : IPaintCoverageInfo
     {
         public double Volume { get; set; }
         public double TinsRequired { get; set; }
+        public double Area { get; set; }
+        public double CoverageM2PerTin { get; set; }
     }
 }

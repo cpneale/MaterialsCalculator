@@ -5,5 +5,7 @@
         double Volume { get; set; }
 
         double TinsRequired { get; set; }
+        double Area { get; set; }
+        double CoverageM2PerTin { get; set; }
     }
 }

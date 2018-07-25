@@ -18,12 +18,15 @@ namespace MaterialsCalculator.Core.Services
             };
         }
 
-        public IPaintCoverageInfo CalculateCoverage(double roomHeight, double roomWidth, double roomLength, double coverage)
+        public IPaintCoverageInfo CalculateCoverage(double roomHeight, double roomWidth,
+                                                     double roomLength, int paintId)
         {
             return new PaintCoverageInfo
             {
                 Volume = 10,
-                TinsRequired = 1
+                TinsRequired = 1,
+                CoverageM2PerTin = 12,
+                Area = 100
             };
         }
     }
