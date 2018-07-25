@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialsCalculator.Api.Tes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{84340BD6-E38B-42A7-B472-8A4EF8F665F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialsCalculator.Services", "MaterialsCalculator.Services\MaterialsCalculator.Services.csproj", "{E9AA0D73-6FB0-4411-A80E-65D2BDA14B55}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialsCalculator.Core", "MaterialsCalculator.Services\MaterialsCalculator.Core.csproj", "{E9AA0D73-6FB0-4411-A80E-65D2BDA14B55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialsCalculator.Services.Tests", "MaterialsCalculator.Services.Tests\MaterialsCalculator.Services.Tests.csproj", "{DEC4BE83-D017-433C-B843-C4350DC99D08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialsCalculator.Core.Tests", "MaterialsCalculator.Services.Tests\MaterialsCalculator.Core.Tests.csproj", "{DEC4BE83-D017-433C-B843-C4350DC99D08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
