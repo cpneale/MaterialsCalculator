@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Http;
 using MaterialsCalculator.Api.Models;
 using MaterialsCalculator.Api.Models.Paint;
 
@@ -11,26 +13,43 @@ namespace MaterialsCalculator.Api.Controllers
         [Route("Paint")]
         public IHttpActionResult Get()
         {
-            var materials = 
-                new PaintQuantityRequestModel { PaintId = 1, PaintName = "Magnolia"};
-            return Ok(materials);
+            try
+            {
+                var materials =
+                    new List<PaintQuantityRequestModel>
+                    {
+                        new PaintQuantityRequestModel { PaintId = 1, PaintName = "Magnolia" }
+                    };
+                return Ok(materials);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPost]
         [Route(@"CalculateQuantity")]
         public IHttpActionResult CalculateQuantity(PaintQuantityRequestModel paintInfo)
         {
-            var quantityInfo =
-                new PaintQuantityResponseModel
-                {
-                    PaintInfo = paintInfo,
-                    Area = 0.0,
-                    Volume = 0.0,
-                    Coverage = 1.2,
-                    TinsRequired = 1
-                };
+            try
+            {
+                var quantityInfo =
+                    new PaintQuantityResponseModel
+                    {
+                        PaintInfo = paintInfo,
+                        Area = 0.0,
+                        Volume = 0.0,
+                        Coverage = 1.2,
+                        TinsRequired = 1
+                    };
 
-            return Ok(quantityInfo);
+                return Ok(quantityInfo);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
     }
