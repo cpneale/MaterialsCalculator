@@ -1,29 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using MaterialsCalculator.Core.MaterialModels;
+using MaterialsCalculator.Core.Queries;
 using MaterialsCalculator.Interfaces.Dimensions;
 using MaterialsCalculator.Interfaces.Services;
 using MaterialsCalculator.Interfaces.MaterialModels;
+using MaterialsCalculator.Interfaces.Providers;
 
 namespace MaterialsCalculator.Core.Services
 {
     public class PaintService : IPaintService
     {
+        private IPaintDetailsQueryHandler<IPaintDetailsQuery> _paintDetailsQueryHandler;
+
+        public PaintService(IPaintDetailsQueryHandler<IPaintDetailsQuery> paintDetailsQueryHandler)
+        {
+            _paintDetailsQueryHandler = paintDetailsQueryHandler;
+        }
+
         public IEnumerable<IPaintInfo> GetPaints()
         {
-            return new List<IPaintInfo>
-            {
-                new PaintInfo {PaintId = 1, PaintName = "Magnolia", CoverageM2PerTin = 10.00},
-                new PaintInfo {PaintId = 2, PaintName = "White", CoverageM2PerTin = 12.00}
-            };
+            return _paintDetailsQueryHandler.Handle(new PaintDetailsQuery());
         }
 
         public IPaintCoverageInfo CalculateCoverage(IRoom room, int paintId)
         {
-            //simulate getting paint from provider for now
-            var paint =
-                new PaintInfo {PaintId = 1, PaintName = "Magnolia", CoverageM2PerTin = 10.00};
+            var paintQuery = new PaintDetailsQuery() {PaintId = paintId};
+            var paint = _paintDetailsQueryHandler.Handle(paintQuery).First();
 
             var area = room.CalculateArea();
             var volume = room.CalculateVolume();
@@ -38,7 +43,7 @@ namespace MaterialsCalculator.Core.Services
             };
         }
 
-        public double CalculateTinsRequired(IRoom room, double coverage)
+        private double CalculateTinsRequired(IRoom room, double coverage)
         {
            return room.CalculateArea() / coverage;
         }

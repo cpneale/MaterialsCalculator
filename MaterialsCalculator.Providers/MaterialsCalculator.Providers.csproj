@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MaterialsCalculator.Interfaces\MaterialsCalculator.Interfaces.csproj" />
+    <ProjectReference Include="..\MaterialsCalculator.Services\MaterialsCalculator.Core.csproj" />
+  </ItemGroup>
+
+</Project>

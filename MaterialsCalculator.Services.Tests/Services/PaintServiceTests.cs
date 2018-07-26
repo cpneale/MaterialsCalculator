@@ -4,8 +4,11 @@ using MaterialsCalculator.Core.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using MaterialsCalculator.Core.Dimensions;
+using MaterialsCalculator.Core.MaterialModels;
+using MaterialsCalculator.Core.Queries;
 using MaterialsCalculator.Interfaces.Dimensions;
 using MaterialsCalculator.Interfaces.MaterialModels;
+using MaterialsCalculator.Interfaces.Providers;
 using Moq;
 
 namespace MaterialsCalculator.Services.Tests.Services
@@ -14,11 +17,22 @@ namespace MaterialsCalculator.Services.Tests.Services
     public class GivenAPaintService
     {
         private PaintService _paintService;
+        private Mock<IPaintDetailsQueryHandler<IPaintDetailsQuery>> _mockQueryHandler;
 
         [TestInitialize]
         public void Setup()
         {
-            _paintService = new PaintService();
+            _mockQueryHandler = new Mock<IPaintDetailsQueryHandler<IPaintDetailsQuery>>();
+
+            IEnumerable<IPaintInfo> paints = new List<IPaintInfo>
+            {
+                new PaintInfo {PaintId = 1, PaintName = "Magnolia", CoverageM2PerTin = 10.00},
+                new PaintInfo {PaintId = 2, PaintName = "White", CoverageM2PerTin = 12.00}
+            };
+
+            _mockQueryHandler.Setup(x => x.Handle(It.IsAny<IPaintDetailsQuery>())).Returns(paints);
+
+            _paintService = new PaintService(_mockQueryHandler.Object);
         }
 
         [TestMethod]
@@ -60,9 +74,9 @@ namespace MaterialsCalculator.Services.Tests.Services
             var room = new SquareRoom() { Height = H, Width = W, Length = L };
             double expectedTinsRequired = room.CalculateArea() / coverage;
 
-            var rslt = _paintService.CalculateTinsRequired(room, coverage);
+            var rslt = _paintService.CalculateCoverage(room, 1);
 
-            rslt.Should().Be(expectedTinsRequired);
+            rslt.TinsRequired.Should().Be(expectedTinsRequired);
         }
     }
 }
