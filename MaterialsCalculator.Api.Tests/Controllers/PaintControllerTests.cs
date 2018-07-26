@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Http.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MaterialsCalculator.Api.Controllers;
@@ -19,6 +20,8 @@ namespace MaterialsCalculator.Api.Tests.Controllers
         Mock<IPaintService> _mockPaintService;
         private IEnumerable<IPaintInfo> _paintInfo;
         private IPaintCoverageInfo _coverageInfo;
+        private Mock<IPaintService> _mockFaultyPaintService;
+        private PaintController _faultyPaintController;
 
         [TestInitialize]
         public void Setup()
@@ -37,13 +40,18 @@ namespace MaterialsCalculator.Api.Tests.Controllers
                 TinsRequired = 2
             };
 
-
             _mockPaintService = new Mock<IPaintService>();
             _mockPaintService.Setup(m => m.GetPaints()).Returns(_paintInfo);
             _mockPaintService.Setup(m => m.CalculateCoverage(It.IsAny<double>(), It.IsAny<double>(), It.IsAny<double>(), It.IsAny<int>()))
                 .Returns(_coverageInfo);
 
             _paintController = new PaintController(_mockPaintService.Object);
+
+            _mockFaultyPaintService = new Mock<IPaintService>();
+            _mockFaultyPaintService.Setup(m => m.GetPaints()).Throws<Exception>();
+            _mockFaultyPaintService.Setup(m => m.CalculateCoverage(It.IsAny<double>(), It.IsAny<double>(), It.IsAny<double>(), It.IsAny<int>())).Throws<Exception>();
+            _faultyPaintController = new PaintController(_mockFaultyPaintService.Object);
+
             _paintRequestModel = new PaintQuantityRequestModel();
         }
 
@@ -59,9 +67,9 @@ namespace MaterialsCalculator.Api.Tests.Controllers
         public void WhenICallGetAndAnErrorOccurs_ThenItReturnsBadRequest()
         {
             //some set up required here
-            var rslt = _paintController.Get();
+            var rslt = _faultyPaintController.Get();
             rslt.Should().NotBeNull();
-            rslt.Should().BeOfType<BadRequestResult>();
+            rslt.Should().BeOfType<BadRequestErrorMessageResult>();
         }
 
         [TestMethod]
@@ -76,9 +84,9 @@ namespace MaterialsCalculator.Api.Tests.Controllers
         public void WhenICallCalculateQuantityAndAnErrorOccurs_ThenItReturnsBadRequest()
         {
             //some set up required here
-            var rslt = _paintController.CalculateQuantity(_paintRequestModel);
+            var rslt = _faultyPaintController.CalculateQuantity(_paintRequestModel);
             rslt.Should().NotBeNull();
-            rslt.Should().BeOfType<BadRequestResult>();
+            rslt.Should().BeOfType<BadRequestErrorMessageResult>();
         }
     }
 }
