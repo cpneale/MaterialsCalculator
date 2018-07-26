@@ -3,6 +3,7 @@ using System.Linq;
 using MaterialsCalculator.Core.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using MaterialsCalculator.Core.Dimensions;
 using MaterialsCalculator.Interfaces.Dimensions;
 using MaterialsCalculator.Interfaces.MaterialModels;
 using Moq;
@@ -13,13 +14,11 @@ namespace MaterialsCalculator.Services.Tests.Services
     public class GivenAPaintService
     {
         private PaintService _paintService;
-        private Mock<IRoom> _mockRoom;
 
         [TestInitialize]
         public void Setup()
         {
             _paintService = new PaintService();
-            _mockRoom = new Mock<IRoom>();
         }
 
         [TestMethod]
@@ -41,17 +40,29 @@ namespace MaterialsCalculator.Services.Tests.Services
         [TestMethod]
         public void WhenICallCalculateCoverage_ThenItDoesNotThrow()
         {
-            _paintService.Invoking(x => x.CalculateCoverage(_mockRoom.Object,1))
+            _paintService.Invoking(x => x.CalculateCoverage(Mock.Of<IRoom>(),1))
                 .Should().NotThrow();
         }
 
         [TestMethod]
         public void WhenICallCalculateCoverage_ThenItReturnsTheCorrectType()
         {
-            var rslt = _paintService.CalculateCoverage(_mockRoom.Object,1);
+            var rslt = _paintService.CalculateCoverage(Mock.Of<IRoom>(), 1);
 
             rslt.Should().NotBeNull();
             rslt.Should().BeAssignableTo<IPaintCoverageInfo>();
+        }
+
+        [TestMethod]
+        public void WhenICallCalculateCoverage_ThenTinsRequiredIsCalculatedCorrectly()
+        {
+            double H = 1, W = 2, L = 3, coverage = 10.0;
+            var room = new SquareRoom() { Height = H, Width = W, Length = L };
+            double expectedTinsRequired = room.CalculateArea() / coverage;
+
+            var rslt = _paintService.CalculateTinsRequired(room, coverage);
+
+            rslt.Should().Be(expectedTinsRequired);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace MaterialsCalculator.Core.Services
 
             var area = room.CalculateArea();
             var volume = room.CalculateVolume();
-            var tinsRequired = CalculateTinsRequired();
+            var tinsRequired = CalculateTinsRequired(room, paint.CoverageM2PerTin);
 
             return new PaintCoverageInfo
             {
@@ -38,9 +38,9 @@ namespace MaterialsCalculator.Core.Services
             };
         }
 
-        private double CalculateTinsRequired()
+        public double CalculateTinsRequired(IRoom room, double coverage)
         {
-           return 0.0;
+           return room.CalculateArea() / coverage;
         }
     }
 }
