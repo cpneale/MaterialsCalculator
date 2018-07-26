@@ -27,6 +27,7 @@ namespace MaterialsCalculator.Api.Controllers
             {
                 IEnumerable<IPaintInfo> paints = _paintService.GetPaints().ToList();
 
+                //send back a request model the client can complete and return for quantity
                 var materials =
                     paints.Select(p => new PaintQuantityRequestModel
                     {
@@ -43,7 +44,7 @@ namespace MaterialsCalculator.Api.Controllers
         }
 
         [HttpPost]
-        [Route(@"CalculateQuantity")]
+        [Route(@"Paint/CalculateQuantity")]
         public IHttpActionResult CalculateQuantity(PaintQuantityRequestModel paintInfo)
         {
             try

@@ -34,7 +34,7 @@ namespace MaterialsCalculator.Api.Tests.Controllers
                 Area = 10,
                 CoverageM2PerTin = 1,
                 Volume = 9,
-                 TinsRequired = 2
+                TinsRequired = 2
             };
 
 
