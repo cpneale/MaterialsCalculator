@@ -12,12 +12,16 @@ namespace MaterialsCalculator.Core.Dimensions
 
         public double CalculateArea()
         {
-            throw new System.NotImplementedException();
+            var ceilingArea = Width * Length;
+            var wallAreaWidth = (Width * Height) * 2; 
+            var wallAreaLength = (Length * Height) * 2;
+            
+            return (ceilingArea + wallAreaLength + wallAreaWidth);
         }
 
         public double CalculateVolume()
         {
-            throw new System.NotImplementedException();
+            return (Width * Height * Length);
         }
     }
 }
