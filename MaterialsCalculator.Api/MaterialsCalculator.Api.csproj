@@ -200,6 +200,7 @@
     <Compile Include="Models\Paint\PaintQuantityResponseModel.cs" />
     <Compile Include="Models\Paint\PaintModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StructureMap\MaterialsApiRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
