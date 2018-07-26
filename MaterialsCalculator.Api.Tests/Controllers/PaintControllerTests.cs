@@ -9,6 +9,7 @@ using MaterialsCalculator.Interfaces.MaterialModels;
 using MaterialsCalculator.Interfaces.Services;
 using Moq;
 using MaterialsCalculator.Core.MaterialModels;
+using MaterialsCalculator.Interfaces.Dimensions;
 
 namespace MaterialsCalculator.Api.Tests.Controllers
 {
@@ -16,7 +17,7 @@ namespace MaterialsCalculator.Api.Tests.Controllers
     public class GivenAPaintController
     {
         PaintController _paintController;
-        PaintQuantityRequestModel _paintRequestModel;
+        PaintRequestModelSquareRoom _paintRequestModel;
         Mock<IPaintService> _mockPaintService;
         private IEnumerable<IPaintInfo> _paintInfo;
         private IPaintCoverageInfo _coverageInfo;
@@ -42,17 +43,16 @@ namespace MaterialsCalculator.Api.Tests.Controllers
 
             _mockPaintService = new Mock<IPaintService>();
             _mockPaintService.Setup(m => m.GetPaints()).Returns(_paintInfo);
-            _mockPaintService.Setup(m => m.CalculateCoverage(It.IsAny<double>(), It.IsAny<double>(), It.IsAny<double>(), It.IsAny<int>()))
+            _mockPaintService.Setup(m => m.CalculateCoverage(It.IsAny<IRoom>(), It.IsAny<int>()))
                 .Returns(_coverageInfo);
-
             _paintController = new PaintController(_mockPaintService.Object);
 
             _mockFaultyPaintService = new Mock<IPaintService>();
             _mockFaultyPaintService.Setup(m => m.GetPaints()).Throws<Exception>();
-            _mockFaultyPaintService.Setup(m => m.CalculateCoverage(It.IsAny<double>(), It.IsAny<double>(), It.IsAny<double>(), It.IsAny<int>())).Throws<Exception>();
+            _mockFaultyPaintService.Setup(m => m.CalculateCoverage(It.IsAny<IRoom>(), It.IsAny<int>())).Throws<Exception>();
             _faultyPaintController = new PaintController(_mockFaultyPaintService.Object);
 
-            _paintRequestModel = new PaintQuantityRequestModel();
+            _paintRequestModel = new PaintRequestModelSquareRoom();
         }
 
         [TestMethod]
@@ -60,7 +60,7 @@ namespace MaterialsCalculator.Api.Tests.Controllers
         {
             var rslt = _paintController.Get();
             rslt.Should().NotBeNull();
-            rslt.Should().BeOfType<OkNegotiatedContentResult<List<PaintQuantityRequestModel>>>();
+            rslt.Should().BeOfType<OkNegotiatedContentResult<List<PaintModel>>>();
         }
 
         [TestMethod]
@@ -75,7 +75,7 @@ namespace MaterialsCalculator.Api.Tests.Controllers
         [TestMethod]
         public void WhenICallCalculateQuantity_ThenItReturnsTheCorrectType()
         {
-            var rslt = _paintController.CalculateQuantity(_paintRequestModel);
+            var rslt = _paintController.CalculateQuantitySquareRoom(_paintRequestModel);
             rslt.Should().NotBeNull();
             rslt.Should().BeOfType<OkNegotiatedContentResult<PaintQuantityResponseModel>>();       
         }
@@ -84,7 +84,7 @@ namespace MaterialsCalculator.Api.Tests.Controllers
         public void WhenICallCalculateQuantityAndAnErrorOccurs_ThenItReturnsBadRequest()
         {
             //some set up required here
-            var rslt = _faultyPaintController.CalculateQuantity(_paintRequestModel);
+            var rslt = _faultyPaintController.CalculateQuantitySquareRoom(_paintRequestModel);
             rslt.Should().NotBeNull();
             rslt.Should().BeOfType<BadRequestErrorMessageResult>();
         }

@@ -5,7 +5,7 @@ namespace MaterialsCalculator.Api.Models.Paint
     public class PaintQuantityResponseModel
     {
         [Required]
-        public PaintQuantityRequestModel PaintInfo { get; set; }
+        public PaintRequestModelSquareRoom PaintInfo { get; set; }
 
         [Required]
         public double Area { get; set; }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MaterialsCalculator.Interfaces.Dimensions;
 using MaterialsCalculator.Interfaces.MaterialModels;
 
 namespace MaterialsCalculator.Interfaces.Services
@@ -7,7 +8,6 @@ namespace MaterialsCalculator.Interfaces.Services
     {
         IEnumerable<IPaintInfo> GetPaints();
 
-        IPaintCoverageInfo CalculateCoverage(double roomHeight, double roomWidth,
-                                                double roomLength, int paintId);
+        IPaintCoverageInfo CalculateCoverage(IRoom room, int paintId);
     }
 }

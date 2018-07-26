@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web.Http;
 using MaterialsCalculator.Api.Models;
 using MaterialsCalculator.Api.Models.Paint;
+using MaterialsCalculator.Core.Dimensions;
+using MaterialsCalculator.Interfaces.Dimensions;
 using MaterialsCalculator.Interfaces.MaterialModels;
 using MaterialsCalculator.Interfaces.Services;
 
@@ -29,7 +31,7 @@ namespace MaterialsCalculator.Api.Controllers
 
                 //send back a request model the client can complete and return for quantity
                 var materials =
-                    paints.Select(p => new PaintQuantityRequestModel
+                    paints.Select(p => new PaintModel
                     {
                         PaintId = p.PaintId,
                         PaintName = p.PaintName
@@ -44,14 +46,19 @@ namespace MaterialsCalculator.Api.Controllers
         }
 
         [HttpPost]
-        [Route(@"Paint/CalculateQuantity")]
-        public IHttpActionResult CalculateQuantity(PaintQuantityRequestModel paintInfo)
+        [Route(@"Paint/CalculateQuantity/SquareRoom")]
+        public IHttpActionResult CalculateQuantitySquareRoom(PaintRequestModelSquareRoom paintInfo)
         {
             try
             {
-                var coverageInfo = _paintService.CalculateCoverage(
-                                        paintInfo.Height, paintInfo.Width, 
-                                        paintInfo.Length, paintInfo.PaintId);
+                var squareRoom = new SquareRoom
+                {
+                    Height = paintInfo.Height,
+                    Width = paintInfo.Width,
+                    Length = paintInfo.Length
+                };
+
+                var coverageInfo = _paintService.CalculateCoverage(squareRoom, paintInfo.PaintId);
 
                 var quantityInfo = new PaintQuantityResponseModel
                 {
