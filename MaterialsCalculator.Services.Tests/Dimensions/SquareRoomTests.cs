@@ -33,8 +33,7 @@ namespace MaterialsCalculator.Services.Tests.Dimensions
 
             var expectedArea = 
                 ((h * l) * 2) +
-                ((h * w) * 2) +
-                (w * l);
+                ((h * w) * 2);
 
             var area = _squareRoom.CalculateArea();
 
@@ -42,7 +41,7 @@ namespace MaterialsCalculator.Services.Tests.Dimensions
         }
 
         [TestMethod]
-        public void WhenICallCalculateAreaWithFloatingPointNumbers_ThenItReturnsTheCorrectArea()
+        public void WhenICallCalculateAreaWithFloatingPointNumbers_ThenItReturnsTheCorrectAreaOfTheWalls()
         {
             double h = 2.1, w = 4.5, l = 5.6;
 
@@ -52,8 +51,7 @@ namespace MaterialsCalculator.Services.Tests.Dimensions
 
             var expectedArea =
                 ((h * l) * 2) +
-                ((h * w) * 2) +
-                (w * l);
+                ((h * w) * 2);
 
             var area = _squareRoom.CalculateArea();
 
