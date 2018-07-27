@@ -13,7 +13,7 @@ The API exposes two API endpoints:
 GET http://localhost:52068/api/Materials/Paint
 This endpoint responds to a simple GET request with a 200 response that has a JSON message in its body.  The JSON message contains an array of JSON elements, each representing a paint that is in stock, e.g.
 
-  [
+  `[
       {
           "PaintId": 1,
           "PaintName": "Magnolia",
@@ -29,32 +29,32 @@ This endpoint responds to a simple GET request with a 200 response that has a JS
           "PaintName": "Green",
           "CoverageM2PerTin": 9.5
       }
-  ]
+  ]`
 
 POST http://localhost:52068/api/Materials/Paint/CalculateQuantity/SquareRoom
 This endpoint responds to a POST request that has a JSON message in its body. The JSON message must provide the dimensions of the room and the desired paintId (obtained from previous call) for which to perform the coverage calculation. It MUST be in the following format:
 
-  {
+  `{
       "PaintId": 1,
       "Height": 2.0,
       "Width": 4.0,
       "Length": 5.0
-  }
+  }`
 
 The endpoint will return a 200 response that has a JSON message in its body which contains the following information, for example:
 
-  {
-      "PaintInfo": {
-          "PaintId": 1,
-          "Height": 2,
-          "Width": 4,
-          "Length": 5
-      },
-      "Area": 36,
-      "Volume": 40,
-      "CoverageM2PerTin": 10,
-      "TinsRequired": 3.6
-  }
+  `{ 
+      "PaintInfo": { 
+          "PaintId": 1, 
+          "Height": 2, 
+          "Width": 4, 
+          "Length": 5 
+      }, 
+      "Area": 36, 
+      "Volume": 40, 
+      "CoverageM2PerTin": 10, 
+      "TinsRequired": 3.6 
+  }` 
 
 The area is that of the walls only.  If an invalid PaintId is sent then a 404 response is returned.
 
@@ -74,11 +74,11 @@ The response will contain a JSON that indicates the available paints and their I
 
 Send a POST request to http://localhost:52068/api/Materials/Paint/CalculateQuantity/SquareRoom making sure to include a JSON object in the body of the request that describes the area of the room to be painted and an valid PaintId from the previous request.  For example:
 
-  {
+  `{
       "PaintId": 1,
       "Height": 2.0,
       "Width": 4.0,
       "Length": 5.0
-  }
+  }`
 
 A 200 response will be received which contains a JSON message that gives the original JSON message provided in the request, plus the Area and Volume of the room and the number of tins of the selected paint required to paint the walls.
