@@ -8,6 +8,7 @@ using MaterialsCalculator.Core.MaterialModels;
 using MaterialsCalculator.Interfaces.Dimensions;
 using MaterialsCalculator.Interfaces.MaterialModels;
 using MaterialsCalculator.Interfaces.Providers;
+using MaterialsCalculator.Providers.Entities;
 using Moq;
 
 namespace MaterialsCalculator.Services.Tests.Services

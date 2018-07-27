@@ -131,6 +131,10 @@
       <Project>{7FA40FDB-8F15-4C89-B21B-A6641770A59F}</Project>
       <Name>MaterialsCalculator.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MaterialsCalculator.Providers\MaterialsCalculator.Providers.csproj">
+      <Project>{16322b76-015d-4204-b3c9-f17e3b4e2880}</Project>
+      <Name>MaterialsCalculator.Providers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MaterialsCalculator.Services\MaterialsCalculator.Core.csproj">
       <Project>{e9aa0d73-6fb0-4411-a80e-65d2bda14b55}</Project>
       <Name>MaterialsCalculator.Core</Name>

@@ -10,6 +10,7 @@ using MaterialsCalculator.Interfaces.Services;
 using Moq;
 using MaterialsCalculator.Core.MaterialModels;
 using MaterialsCalculator.Interfaces.Dimensions;
+using MaterialsCalculator.Providers.Entities;
 
 namespace MaterialsCalculator.Api.Tests.Controllers
 {

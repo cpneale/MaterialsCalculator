@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using MaterialsCalculator.Core.MaterialModels;
 using MaterialsCalculator.Interfaces.MaterialModels;
 using MaterialsCalculator.Interfaces.Providers;
+using MaterialsCalculator.Providers.Entities;
 
 namespace MaterialsCalculator.Providers.QueryHandlers
 {

@@ -1,6 +1,6 @@
 ﻿using MaterialsCalculator.Interfaces.MaterialModels;
 
-namespace MaterialsCalculator.Core.MaterialModels
+namespace MaterialsCalculator.Providers.Entities
 {
     public class PaintInfo : IPaintInfo
     {

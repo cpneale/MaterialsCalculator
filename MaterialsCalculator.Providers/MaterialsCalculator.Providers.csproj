@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MaterialsCalculator.Interfaces\MaterialsCalculator.Interfaces.csproj" />
-    <ProjectReference Include="..\MaterialsCalculator.Services\MaterialsCalculator.Core.csproj" />
   </ItemGroup>
 
 </Project>

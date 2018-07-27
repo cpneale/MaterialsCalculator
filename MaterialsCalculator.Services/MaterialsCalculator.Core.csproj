@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="StructureMap" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MaterialsCalculator.Interfaces\MaterialsCalculator.Interfaces.csproj" />
+    <ProjectReference Include="..\MaterialsCalculator.Providers\MaterialsCalculator.Providers.csproj" />
   </ItemGroup>
 
 </Project>
