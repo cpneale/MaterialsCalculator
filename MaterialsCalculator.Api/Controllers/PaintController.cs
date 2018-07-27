@@ -18,6 +18,8 @@ namespace MaterialsCalculator.Api.Controllers
 
         public PaintController(IPaintService paintService)
         {
+            if (paintService == null)
+                throw new ArgumentNullException(nameof(paintService));
             _paintService = paintService;
         }
 

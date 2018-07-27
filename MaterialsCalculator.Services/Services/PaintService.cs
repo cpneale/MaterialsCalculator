@@ -17,6 +17,9 @@ namespace MaterialsCalculator.Core.Services
 
         public PaintService(IPaintDetailsQueryHandler<IPaintDetailsQuery> paintDetailsQueryHandler)
         {
+            if (paintDetailsQueryHandler == null)
+                throw new ArgumentNullException(nameof(paintDetailsQueryHandler));
+
             _paintDetailsQueryHandler = paintDetailsQueryHandler;
         }
 
