@@ -82,3 +82,7 @@ Send a POST request to http://localhost:52068/api/Materials/Paint/CalculateQuant
   }`
 
 A 200 response will be received which contains a JSON message that gives the original JSON message provided in the request, plus the Area and Volume of the room and the number of tins of the selected paint required to paint the walls.
+
+
+## Future of the API
+While over-engineered for the current features, the idea for the API is that it could be extended at one end to provide end points for different shaped rooms and materials such as wall paper or plaster.  At the other end it could be extended to be provided with material information from different data sources such as databases or material vendor APIs.
