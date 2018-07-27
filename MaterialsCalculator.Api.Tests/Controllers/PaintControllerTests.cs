@@ -24,6 +24,9 @@ namespace MaterialsCalculator.Api.Tests.Controllers
         private IPaintCoverageInfo _coverageInfo;
         private Mock<IPaintService> _mockFaultyPaintService;
         private PaintController _faultyPaintController;
+        private int _missingPaintId = 999;
+        private int _paintId = 1;
+        private PaintRequestModelSquareRoom _missingPaintRequestModel;
 
         [TestInitialize]
         public void Setup()
@@ -50,10 +53,20 @@ namespace MaterialsCalculator.Api.Tests.Controllers
 
             _mockFaultyPaintService = new Mock<IPaintService>();
             _mockFaultyPaintService.Setup(m => m.GetPaints()).Throws<Exception>();
-            _mockFaultyPaintService.Setup(m => m.CalculateCoverage(It.IsAny<IRoom>(), It.IsAny<int>())).Throws<Exception>();
+            _mockFaultyPaintService.Setup(m => m.CalculateCoverage(It.IsAny<IRoom>(), _paintId)).Throws<Exception>();
+            _mockFaultyPaintService.Setup(m => m.CalculateCoverage(It.IsAny<IRoom>(), _missingPaintId)).Throws<ArgumentException>();
             _faultyPaintController = new PaintController(_mockFaultyPaintService.Object);
 
-            _paintRequestModel = new PaintRequestModelSquareRoom();
+            _paintRequestModel = new PaintRequestModelSquareRoom()
+            {
+                Height = 0, Length = 0, Width = 0, PaintId = _paintId
+            };
+
+            _missingPaintRequestModel = new PaintRequestModelSquareRoom()
+            {
+                Height = 0, Length = 0, Width = 0, PaintId = _missingPaintId
+            };
+
         }
 
         [TestMethod]
@@ -67,10 +80,17 @@ namespace MaterialsCalculator.Api.Tests.Controllers
         [TestMethod]
         public void WhenICallGetAndAnErrorOccurs_ThenItReturnsBadRequest()
         {
-            //some set up required here
             var rslt = _faultyPaintController.Get();
             rslt.Should().NotBeNull();
             rslt.Should().BeOfType<BadRequestErrorMessageResult>();
+        }
+
+        [TestMethod]
+        public void WhenICallGet_ThenGetPaintsIsCalledOnTheService()
+        {
+            var rslt = _paintController.Get();
+
+            _mockPaintService.Verify(x => x.GetPaints());
         }
 
         [TestMethod]
@@ -84,10 +104,25 @@ namespace MaterialsCalculator.Api.Tests.Controllers
         [TestMethod]
         public void WhenICallCalculateQuantityAndAnErrorOccurs_ThenItReturnsBadRequest()
         {
-            //some set up required here
             var rslt = _faultyPaintController.CalculateQuantitySquareRoom(_paintRequestModel);
             rslt.Should().NotBeNull();
             rslt.Should().BeOfType<BadRequestErrorMessageResult>();
+        }
+
+        [TestMethod]
+        public void WhenICallCalculateQuantityAndAnArgumentExceptionIsHandled_ThenItReturnsNotFound()
+        {
+            var rslt = _faultyPaintController.CalculateQuantitySquareRoom(_missingPaintRequestModel);
+            rslt.Should().NotBeNull();
+            rslt.Should().BeOfType<NotFoundResult>();
+        }
+
+        [TestMethod]
+        public void WhenICallCalculateQuantitySquareRoom_ThenCalculateCoverageIsCalledOnTheService()
+        {
+            var rslt = _paintController.CalculateQuantitySquareRoom(_paintRequestModel);
+
+            _mockPaintService.Verify(x => x.CalculateCoverage(It.IsAny<IRoom>(), It.IsAny<int>()));
         }
     }
 }

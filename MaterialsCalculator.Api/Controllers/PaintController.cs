@@ -71,6 +71,10 @@ namespace MaterialsCalculator.Api.Controllers
 
                 return Ok(quantityInfo);
             }
+            catch (ArgumentException ae)
+            {
+                return NotFound();
+            }
             catch (Exception e)
             {
                 return BadRequest(e.Message);

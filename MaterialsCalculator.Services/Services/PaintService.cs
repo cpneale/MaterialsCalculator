@@ -30,7 +30,11 @@ namespace MaterialsCalculator.Core.Services
         public IPaintCoverageInfo CalculateCoverage(IRoom room, int paintId)
         {
             var paintQuery = new PaintDetailsQuery() {PaintId = paintId};
-            var paint = _paintDetailsQueryHandler.Handle(paintQuery).First();
+            var paint = _paintDetailsQueryHandler.Handle(paintQuery).FirstOrDefault();
+
+            if (paint == null)
+                throw new ArgumentException(
+                    $"Value {paintId} for parameter {nameof(paintId)} does not exist");
 
             var area = room.CalculateArea();
             var volume = room.CalculateVolume();
