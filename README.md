@@ -1,13 +1,13 @@
 # MaterialsCalculator
 A simple API project to calculate the area of a room, volume of a room and number of tins required to paint the walls when give the dimensions of the room and paint information.
 
-##Setup
+## Setup
 Clone or download the project and open the MaterialsCalculator.sln file in Visual Studio 2017 (may work in earlier versions but this has not been tested!).
 
 Build the solution.
 
 
-##Features
+## Features
 The API exposes two API endpoints:
 
 GET http://localhost:52068/api/Materials/Paint
@@ -59,11 +59,11 @@ The endpoint will return a 200 response that has a JSON message in its body whic
 The area is that of the walls only.  If an invalid PaintId is sent then a 404 response is returned.
 
 
-##Unit Tests
+## Unit Tests
 Unit test projects are located in the solution-level folder named Tests.  Use the unit tests to see behaviour of individual components.
 
 
-##Run the Api
+## Run the Api
 From visual studio, hit F5 to run the project.
 
 A browser window will open and try to navigate to a home page which is not available but the application will be running listening to http port 52068.
