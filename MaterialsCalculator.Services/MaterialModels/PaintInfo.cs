@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MaterialsCalculator.Interfaces.MaterialModels;
+﻿using MaterialsCalculator.Interfaces.MaterialModels;
 
 namespace MaterialsCalculator.Core.MaterialModels
 {

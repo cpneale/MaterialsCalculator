@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using MaterialsCalculator.Core.MaterialModels;
 using MaterialsCalculator.Interfaces.MaterialModels;
 using MaterialsCalculator.Interfaces.Providers;

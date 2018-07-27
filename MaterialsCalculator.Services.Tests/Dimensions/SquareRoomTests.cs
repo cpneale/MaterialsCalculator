@@ -1,7 +1,5 @@
-﻿using System;
-using MaterialsCalculator.Core.Dimensions;
+﻿using MaterialsCalculator.Core.Dimensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using FluentAssertions;
 
 namespace MaterialsCalculator.Services.Tests.Dimensions

@@ -5,7 +5,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using MaterialsCalculator.Core.Dimensions;
 using MaterialsCalculator.Core.MaterialModels;
-using MaterialsCalculator.Core.Queries;
 using MaterialsCalculator.Interfaces.Dimensions;
 using MaterialsCalculator.Interfaces.MaterialModels;
 using MaterialsCalculator.Interfaces.Providers;

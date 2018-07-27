@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using MaterialsCalculator.Providers.QueryHandlers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;

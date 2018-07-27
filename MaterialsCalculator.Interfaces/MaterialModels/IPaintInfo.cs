@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MaterialsCalculator.Interfaces.MaterialModels
+﻿namespace MaterialsCalculator.Interfaces.MaterialModels
 { 
     public interface IPaintInfo
     {

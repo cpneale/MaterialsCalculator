@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using MaterialsCalculator.Api.Models;
 using MaterialsCalculator.Api.Models.Paint;
 using MaterialsCalculator.Core.Dimensions;
-using MaterialsCalculator.Interfaces.Dimensions;
 using MaterialsCalculator.Interfaces.MaterialModels;
 using MaterialsCalculator.Interfaces.Services;
 
