@@ -34,7 +34,8 @@ namespace MaterialsCalculator.Api.Controllers
                     paints.Select(p => new PaintModel
                     {
                         PaintId = p.PaintId,
-                        PaintName = p.PaintName
+                        PaintName = p.PaintName,
+                        CoverageM2PerTin = p.CoverageM2PerTin
                     }).ToList();
 
                 return Ok(materials);

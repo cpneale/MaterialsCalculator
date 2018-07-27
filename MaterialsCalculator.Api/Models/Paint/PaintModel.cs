@@ -10,5 +10,7 @@ namespace MaterialsCalculator.Api.Models.Paint
         [Required]
         public string PaintName { get; set; }
 
+        public double CoverageM2PerTin { get; set; }
+
     }
 }
